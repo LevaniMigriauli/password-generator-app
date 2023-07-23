@@ -14,6 +14,14 @@
   background: black;
   display: flex;
   justify-content: center;
+  --almost-white: #e6e5ea;
+  --light-grey: #817d92;
+  --darkGrey: #24232c;
+  --very-dark-grey: #18171f;
+  --neon-green: #a4ffaf;
+  --3yellow: #f8cd65;
+  --2-orange: #fb7c58;
+  --1-red: #f64a4a;
   /* 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
