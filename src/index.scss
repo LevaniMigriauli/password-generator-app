@@ -5,38 +5,33 @@
 }
 
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 700;
 
-  color-scheme: light dark; */
-  color: rgba(255, 255, 255, 0.87);
-  background: black;
-  display: flex;
   justify-content: center;
   --almost-white: #e6e5ea;
   --light-grey: #817d92;
   --darkGrey: #24232c;
   --very-dark-grey: #18171f;
   --neon-green: #a4ffaf;
-  --3yellow: #f8cd65;
+  --3-yellow: #f8cd65;
   --2-orange: #fb7c58;
   --1-red: #f64a4a;
-  /* 
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%; */
+  -webkit-text-size-adjust: 100%;
+
+  @font-face {
+    font-family: "JetBrains-Mono";
+    src: url("./assets/fonts/JetBrainsMono-Bold.ttf") format("ttf");
+
+    -moz-osx-font-smoothing: grayscale; /*(For Firefox)*/
+    -webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
+  }
+
 }
 
-/* button {
-
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
