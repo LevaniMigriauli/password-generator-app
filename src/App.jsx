@@ -43,8 +43,8 @@ function App () {
     const numberCheck = /[0-9]/g.test(password)
     const symbolCheck = /[!@#$&*]/g.test(password)
 
-    console.log(password)
-    console.log(uppercaseCheck, lowercaseCheck, numberCheck, symbolCheck)
+    // console.log(password)
+    // console.log(uppercaseCheck, lowercaseCheck, numberCheck, symbolCheck)
 
     if (
       characterLength > 10 &&
@@ -81,33 +81,49 @@ function App () {
       if (checkBoxIsChecked.uppercase) {
         const random = randomizer('uppercase')
         pass += passwordItems.uppercase[random]
-        if (pass.length === Number(characterLength)) return setPassword(pass)
+        // if (pass.length === Number(characterLength)) return setPassword(pass)
       }
       if (checkBoxIsChecked.lowercase) {
         const random = randomizer('lowercase')
         pass += passwordItems.lowercase[random]
-        if (pass.length === Number(characterLength)) return setPassword(pass)
+        // if (pass.length === Number(characterLength)) return setPassword(pass)
       }
       if (checkBoxIsChecked.numbers) {
         const random = randomizer('numbers')
         pass += passwordItems.numbers[random]
-        if (pass.length === Number(characterLength)) return setPassword(pass)
+        // if (pass.length === Number(characterLength)) return setPassword(pass)
       }
       if (checkBoxIsChecked.symbols) {
         const random = randomizer('symbols')
         pass += passwordItems.symbols[random]
-        if (pass.length === Number(characterLength)) return setPassword(pass)
+        // if (pass.length === Number(characterLength)) return setPassword(pass)
       }
     }
 
-    // let passSplitted = pass
-    // console.log(passSplitted)
+    if (pass.length > characterLength) {
+      const sliceStart = Math.trunc(Math.random() * characterLength / 2)
+
+      const getSum = function (a, b) {
+        if (b === 0) {
+          return a
+        } else {
+          return getSum(a ^ b, (a & b) << 1)
+        }
+      }
+      setPassword(
+        (pass.slice(sliceStart,
+          `${getSum(sliceStart, Number(characterLength))}`)))
+    } else {
+      setPassword(pass)
+    }
   }
 
   const passGenerator = function () {
     passwordGenerateHandler()
     passwordStrengthHandler()
   }
+
+  // console.log(password)
 
   return (
     <div className={classes.app}>
