@@ -6,29 +6,39 @@
 
 body {
   background-image: linear-gradient(180deg, #14131B 0%, #08070B 100%);
+  height: 100%;
 }
 
 .app {
+  color: var(--almost-white);
   width: 375px;
   padding: 64px 16px 63px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin: 0 auto;
 
 
   @media (min-width: 768px) {
     width: 540px;
+    padding-top: 133px;
+    padding-bottom: 196px;
   }
 }
 
 .header {
   text-align: center;
-  font-family: JetBrains Mono;
+  font-family: "JetBrains Mono", monospace;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: var(--darkGrey);
+  color: var(--light-grey);
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+
 }
 
 .generated-password {
@@ -41,21 +51,27 @@ body {
 
   p {
     color: var(--almost-white, #e6e5ea);
-    font-family: JetBrains Mono;
+    font-family: "JetBrains Mono", monospace;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 
+
+    @media (min-width: 768px) {
+      font-size: 32px;
+    }
+
     &:empty:not(:focus)::before {
       content: attr(data-placeholder);
-      color: #18171f;
+      color: var(--almost-white);
+      opacity: .25;
     }
   }
 
   span {
     color: #a4ffaf;
-    font-family: JetBrains Mono, serif;
+    font-family: "JetBrains Mono", monospace;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
@@ -70,20 +86,19 @@ body {
     width: 17.5px;
     height: 20px;
 
-    img {
-      width: 100%;
-      height: 100%;
-
-      &:hover {
-        stroke: #e6e5ea;
-      }
-    }
 
     &:hover {
       svg {
         path {
           fill: #fff;
         }
+      }
+    }
+
+    svg {
+      path {
+        width: 17.5px !important;
+        height: 20px !important;
       }
     }
   }
@@ -93,41 +108,72 @@ body {
   background: #24232c;
   padding: 16px;
 
+  @media (min-width: 768px) {
+    padding: 24px 32px 32px;
+  }
+
   .character-length {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 31px;
-    margin-bottom: 18px;
+    accent-color: #a4ffaf;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    margin-bottom: 42px;
+
+
+    //&::-webkit-slider-runnable-track {
+    //  border-radius: 0;
+    //}
+    //
+    //&::-webkit-slider-thumb {
+    //  height: 28px;
+    //  width: 28px;
+    //  background-color: #f8cd65;
+    //}
+
+    &[type="range"]::-webkit-slider-thumb {
+      height: 28px !important;
+      width: 28px !important;
+      background-color: #f8cd65 !important;
+      color: red !important;
+    }
+
 
     label {
       color: var(--almost-white, #e6e5ea);
-      font-family: JetBrains Mono;
+      font-family: "JetBrains Mono", monospace;
       font-size: 16px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
     }
 
     span {
       color: #a4ffaf;
-      font-family: JetBrains Mono;
+      font-family: "JetBrains Mono", monospace;
       font-size: 24px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+
+      @media (min-width: 768px) {
+        font-size: 32px;
+      }
     }
   }
 
-  .character-length {
-    width: 100%;
-    margin-bottom: 42px;
-  }
 
   button:last-child {
     color: var(--dark-grey, #24232c);
     text-align: center;
-    font-family: JetBrains Mono;
+    font-family: "JetBrains Mono", monospace;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -136,6 +182,11 @@ body {
     padding: 18px 0 17px 0;
     background: var(--neon-green, #a4ffaf);
     border: none;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+      height: 65px;
+    }
 
     svg {
       margin-left: 16px;
@@ -157,10 +208,6 @@ body {
         }
       }
     }
-
-    // img {
-    //   margin-left: 16px;
-    // }
   }
 }
 
@@ -169,6 +216,10 @@ body {
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    gap: 18px;
+  }
 
   div {
     display: flex;
@@ -185,6 +236,11 @@ body {
     }
 
     label {
+      font-size: 16px;
+
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
     }
   }
 
@@ -212,11 +268,15 @@ body {
   span {
     color: var(--grey, #817d92);
     text-align: center;
-    font-family: JetBrains Mono;
+    font-family: "JetBrains Mono", monospace;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   &-indicators {
@@ -225,13 +285,18 @@ body {
     align-items: center;
 
     span {
+      font-size: 18px;
       color: var(--almost-white, #e6e5ea);
       text-align: right;
-      font-family: JetBrains Mono;
+      font-family: "JetBrains Mono", monospace;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
       margin-right: 8px;
+
+      @media (min-width: 768px) {
+        font-size: 24px;
+      }
     }
 
     div {
@@ -261,3 +326,5 @@ body {
     }
   }
 }
+
+

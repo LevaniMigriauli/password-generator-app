@@ -99,6 +99,9 @@ function App () {
         if (pass.length === Number(characterLength)) return setPassword(pass)
       }
     }
+
+    // let passSplitted = pass
+    // console.log(passSplitted)
   }
 
   const passGenerator = function () {
