@@ -6,7 +6,6 @@
 
 :root {
   font-family: 'JetBrains Mono', monospace;
-  //line-height: 1.5;
   font-weight: 700;
 
   justify-content: center;
@@ -28,9 +27,6 @@
   @font-face {
     font-family: "JetBrains-Mono";
     src: url("./assets/fonts/JetBrainsMono-Bold.ttf") format("ttf");
-
-    -moz-osx-font-smoothing: grayscale; /*(For Firefox)*/
-    -webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
   }
 
 }
