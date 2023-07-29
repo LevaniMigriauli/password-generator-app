@@ -119,8 +119,11 @@ function App () {
   }
 
   const passGenerator = function () {
-    passwordGenerateHandler()
-    passwordStrengthHandler()
+    if (characterLength > 0) {
+      passwordGenerateHandler()
+      passwordStrengthHandler()
+    }
+
   }
 
   // console.log(password)
