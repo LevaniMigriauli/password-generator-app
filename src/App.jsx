@@ -85,9 +85,6 @@ function App () {
     const numberCheck = /[0-9]/g.test(password)
     const symbolCheck = /[!@#$&*]/g.test(password)
 
-    console.log(password)
-    console.log(uppercaseCheck, lowercaseCheck, numberCheck, symbolCheck)
-
     if (
       characterLength > 10 &&
       uppercaseCheck &&
