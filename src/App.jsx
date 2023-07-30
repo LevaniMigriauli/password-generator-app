@@ -1,10 +1,5 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import copyLogo from './assets/images/icon-copy.svg'
+import { useEffect, useState } from 'react'
 import checked from './assets/images/icon-check.svg'
-import rightArrow from './assets/images/icon-arrow-right.svg'
-import copyHover from './assets/images/hover_copy.svg'
 
 import classes from './App.module.scss'
 
@@ -17,7 +12,7 @@ const passwordItems = {
 
 function App () {
   const [password, setPassword] = useState('')
-  const [passwordCopyed, setPasswordCopyed] = useState('')
+  const [passwordCopied, setPasswordCopied] = useState('')
 
   const [characterLength, setCharacterLength] = useState('0')
 
@@ -32,43 +27,9 @@ function App () {
 
   const generatedPasswordCopyHandler = function () {
     navigator.clipboard.writeText(password).then(() => {
-      setPasswordCopyed('COPIED')
-      setTimeout(() => setPasswordCopyed(''), 3000)
+      setPasswordCopied('COPIED')
+      setTimeout(() => setPasswordCopied(''), 3000)
     })
-  }
-
-  const passwordStrengthHandler = function () {
-    const uppercaseCheck = /[A-Z]/g.test(password)
-    const lowercaseCheck = /[a-z]/g.test(password)
-    const numberCheck = /[0-9]/g.test(password)
-    const symbolCheck = /[!@#$&*]/g.test(password)
-
-    // console.log(password)
-    // console.log(uppercaseCheck, lowercaseCheck, numberCheck, symbolCheck)
-
-    if (
-      characterLength > 10 &&
-      uppercaseCheck &&
-      lowercaseCheck &&
-      numberCheck &&
-      symbolCheck
-    ) {
-      setPasswordStrength('STRONG')
-    } else if (
-      characterLength > 7 &&
-      uppercaseCheck &&
-      lowercaseCheck &&
-      numberCheck &&
-      symbolCheck
-    ) {
-      setPasswordStrength('MEDIUM')
-    } else if (characterLength > 4) {
-      setPasswordStrength('WEAK')
-    } else {
-      setPasswordStrength('TOO WEAK!')
-    }
-
-    // ერთით აგვიანებს რენდერს
   }
 
   const passwordGenerateHandler = function () {
@@ -118,15 +79,37 @@ function App () {
     }
   }
 
-  const passGenerator = function () {
-    if (characterLength > 0) {
-      passwordGenerateHandler()
-      passwordStrengthHandler()
+  useEffect(() => {
+    const uppercaseCheck = /[A-Z]/g.test(password)
+    const lowercaseCheck = /[a-z]/g.test(password)
+    const numberCheck = /[0-9]/g.test(password)
+    const symbolCheck = /[!@#$&*]/g.test(password)
+
+    console.log(password)
+    console.log(uppercaseCheck, lowercaseCheck, numberCheck, symbolCheck)
+
+    if (
+      characterLength > 10 &&
+      uppercaseCheck &&
+      lowercaseCheck &&
+      numberCheck &&
+      symbolCheck
+    ) {
+      setPasswordStrength('STRONG')
+    } else if (
+      characterLength > 7 &&
+      uppercaseCheck &&
+      lowercaseCheck &&
+      numberCheck &&
+      symbolCheck
+    ) {
+      setPasswordStrength('MEDIUM')
+    } else if (characterLength > 4) {
+      setPasswordStrength('WEAK')
+    } else {
+      characterLength > 0 && setPasswordStrength('TOO WEAK!')
     }
-
-  }
-
-  // console.log(password)
+  }, [password])
 
   return (
     <div className={classes.app}>
@@ -138,7 +121,7 @@ function App () {
         >
           {password}
         </p>
-        <span>{passwordCopyed}</span>
+        <span>{passwordCopied}</span>
         <button type="" onClick={generatedPasswordCopyHandler}>
           {/* <img src={copyLogo} alt="" /> */}
           <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -235,18 +218,18 @@ function App () {
         <div className={classes['password-strength']}>
           <span>STRENGTH</span>
           <div className={classes['password-strength-indicators']}>
-            <span>{passwordStrength}</span>
+            <span>{password.length > 0 && passwordStrength}</span>
             <div
               className={
-                passwordStrength === 'TOO WEAK!'
-                  ? classes.red
-                  : passwordStrength === 'WEAK'
-                    ? classes.orange
-                    : passwordStrength === 'MEDIUM'
-                      ? classes.yellow
-                      : passwordStrength === 'STRONG'
-                        ? classes.green
-                        : ''
+              passwordStrength === 'TOO WEAK!'
+                ? classes.red
+                : passwordStrength === 'WEAK'
+                  ? classes.orange
+                  : passwordStrength === 'MEDIUM'
+                    ? classes.yellow
+                    : passwordStrength === 'STRONG'
+                      ? classes.green
+                      : ''
               }
             ></div>
             <div
@@ -274,7 +257,11 @@ function App () {
             ></div>
           </div>
         </div>
-        <button onClick={passGenerator}>
+        <button onClick={() => {
+          if (characterLength > 0) {
+            passwordGenerateHandler()
+          }
+        }}>
           GENERATE
           {/* <img src={rightArrow} alt="" /> */}
           <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
